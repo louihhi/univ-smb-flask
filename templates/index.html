@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet" type="text/css">
+    <title>Management </title>
+</head>
+<body>
+        <header class="site-header">
+                <div class="site-identity">
+                  <h1>Management</h1>
+                </div> 
+                <div><img alt="logo" src="{{url_for('static', filename='logo.jpg')}}" ></div> 
+                <nav class="site-navigation">
+                  <ul class="nav">
+                    <li><a href="/alias">Alias</a></li> 
+                    <li><a href="/nat_filter">Nat</a></li> 
+                    
+                  </ul>
+                </nav>
+              </header>
+    <div class="background"></div>
+    <div class="site-content">
+        <h1>Informations System</h1>
+
+        <table class= info>
+            <thead>
+                <tr>
+                    <th>Processeur</th>
+                    <th> Memoire</th>
+                    <th> GPU 0</th>
+                    <th> GPU 1</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Intel Core I7 10700</td>
+                    <td>32 Go</td>
+                    <td>Intel UHD Graphic 630 </td>
+                    <td>NVIDIA T400</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+              <div class="footer">Designed by <strong>Louis</strong>.</div>
+
+
+</body>
+</html>
+

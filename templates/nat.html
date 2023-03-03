@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet" type="text/css">
+    <title>Management </title>
+</head>
+<body>
+        <header class="site-header">
+                <div class="site-identity">
+                  <h1>Management</h1>
+                </div>  
+                <div><img alt="logo" src="{{url_for('static', filename='logo.jpg')}}" ></div> 
+                <nav class="site-navigation">
+                  <ul class="nav">
+                        <li><a href="/alias">Alias</a></li> 
+                        <li><a href="/">information</a></li> 
+                        
+                  </ul>
+                </nav>
+              </header>
+<div class="site-content">
+    <h1>Table Nat</h1>
+
+<table  class= info>
+    <thead>
+        <tr>
+            <th>protocol</th>
+            <th>Inside Global</th>
+            <th>Inside local</th>
+            <th>Outside local</th>
+            <th>Outside Global</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>UDP</td>
+            <td>193.10.5.10</td>
+            <td>10.1.0.4</td>
+            <td>8.8.8.8</td>
+            <td>8.8.8.8</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="footer">Designed by <strong>Louis</strong>.</div>
+
+</body>
+</html>
