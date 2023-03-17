@@ -1,5 +1,7 @@
 # save this as app.py
 from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import jsonify
+import json
 
 app = Flask(__name__)
 app.secret_key='toto:tata'
@@ -70,3 +72,49 @@ def nat_filter():
     else:
         return redirect(url_for('login'))
         
+
+@app.route('/get_content')
+def get_content():
+    with open('alias.json', 'r') as f:
+        content = json.load(f)
+    return jsonify(content)
+
+@app.route('/json')
+def json1():
+    return '''
+            <h1>Contenu de alias.json</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>alias</th>
+                        <th>ip address</th>
+                        <th>port</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+
+            <script>
+            function getContent() {
+                fetch('/get_content')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('tableBody');
+                        let tableHtml = '';
+                        for (let i = 0; i < data.length; i++) {
+                            const item = data[i];
+                            tableHtml += `<tr><td>${item.alias}</td><td>${item.ip_address}</td><td>${item.port}</td></tr>`;
+                        }
+                        tableBody.innerHTML = tableHtml;
+                    });
+            }
+
+            document.addEventListener('DOMContentLoaded', getContent);
+            window.onload = getContent
+            setInterval(getContent, 60000);
+            </script>
+
+
+
+    '''
