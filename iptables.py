@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask import jsonify
 import json
+import base64
 
 app = Flask(__name__)
 app.secret_key='toto:tata'
@@ -11,21 +12,29 @@ app.secret_key='toto:tata'
 def index2():
 
     if 'username' in session:
-        return f'logged in as {session["username"]}'
-    return redirect(url_for('login'))
+        #return f'logged in as {session["username"]}'
+        return redirect(url_for('login'))
+    else:
+        return render_template ("index.html")
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST' :
         username = request.form['username']
         password = request.form['password']
-        secretToTest = username + ":" + password
+        secret = username+":"+password
+        secretToTest = secret.encode('ascii')
+        secretB =  base64.b64encode(secretToTest)
+        secretB64 = secretB.decode('ascii')
+        
+
 
         with open('passwd.txt', 'r') as f:
                 lines = f.readlines()
                 for line in lines:
                     line = line.strip()
-                    if line == f'{username}:{password}':
+                    if line == secretB64:
                         session['username'] = username
                         return render_template ("index.html")
                     else:
@@ -81,7 +90,8 @@ def get_content():
 
 @app.route('/json')
 def json1():
-    return '''
+    if 'username' in session:
+        return '''
             <h1>Contenu de alias.json</h1>
             <table>
                 <thead>
@@ -118,3 +128,9 @@ def json1():
 
 
     '''
+        
+        
+    
+    else:
+        return redirect(url_for('login'))
+    
