@@ -1,5 +1,1 @@
-# univ-smb-flask
-
-Click the button below to start a new development environment:
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/louihhi/univ-smb-flask)
+Le site implemente un systeme de d'authentification avec control de session. Dès la connection on peut visualisé les utiliateurs present dans la base de donné
